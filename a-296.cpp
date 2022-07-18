@@ -18,7 +18,7 @@ int main()
 
     for (const auto &it : m)
     {
-        if (n < (2 * it.second - 1))
+        if (n < (2 * it.second + 1))
         {
             valid = false;
             break;
