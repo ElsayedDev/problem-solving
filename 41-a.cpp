@@ -4,20 +4,12 @@ using namespace std;
 int main()
 {
 
-    string  s = "ABS" , t;
+    string s, t;
 
-    cin>>s>>t; 
+    cin >> s >> t;
 
-    do{
+    reverse(s.begin(), s.end());
 
-        if(t==s){
-            cout<<"YES";
-            return 0 ;
-        }
-
-    }while (next_permutation(s.begin(), s.end()));
-    
-    cout<<"NO";
-    return 0;    
+    cout << (s == t ? "YES" : "NO");
+    return 0;
 }
-    
