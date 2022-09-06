@@ -13,6 +13,8 @@ int main()
 
     int m = n;
 
+    
+
     for (int i = 0; i < n; i++)
     {
         int x;
