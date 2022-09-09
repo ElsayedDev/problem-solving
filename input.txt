@@ -1,4 +1,4 @@
-3 2
-W W
-W W
-B B
+3
+xpx
+pxp
+xpe
