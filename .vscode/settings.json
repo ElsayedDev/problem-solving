@@ -4,6 +4,7 @@
         "ratio": "cpp",
         "array": "cpp",
         "cmath": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "*.tcc": "cpp"
     },
 }
