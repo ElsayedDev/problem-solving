@@ -18,35 +18,44 @@ int main()
     if (arr[a - 1])
     {
         ans++;
+        arr[a - 1] = 0;
     }
 
     int distance = 1;
     // left & right of my position
-    for (int i = a; i < n; i++)
+
+    if (n > 1)
     {
-        int left_index = a - distance - 1;
-
-        if (left_index < 0)
+        for (int i = a; i < n; i++)
         {
-            break;
+            int left_index = a - distance - 1;
+
+            if (left_index < 0)
+            {
+                break;
+            }
+
+            if (arr[i] == 1 && arr[left_index] == 1)
+            {
+                ans += 2;
+            }
+
+            arr[i] = 0;
+            arr[left_index] = 0;
+
+            distance++;
         }
 
+        // remain positions
 
-        if (arr[i] && arr[left_index])
+        for (int i = 0; i < n; i++)
         {
-            ans++;
+            if (arr[i] == 1)
+            {
+                ans++;
+            }
         }
-
-        distance++;
     }
 
-    // remain positions
-
+    cout << ans;
 }
-
-/*
-
-    1 2 3 4 5 6 7 8 9
-    4 3 2 1 0 1 2 3 4
-
- */
