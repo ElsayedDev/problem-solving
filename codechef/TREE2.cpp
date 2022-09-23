@@ -6,35 +6,34 @@ using namespace std;
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
 
-    const string p1 = "010";
-    const string p2 = "101";
-
-    int t;
+    ll t;
     cin >> t;
 
     while (t--)
     {
         ll n;
         cin >> n;
-        set<ll> se;
+
+        ll arr[n];
+
 
         for (ll i = 0; i < n; i++)
         {
-            ll x;
-            cin >> x;
-            se.insert(x);
+            cin >> arr[i];
         }
+
+        sort(arr, arr + n);
 
         ll ans = 0;
 
-        for (int i = 0; i < se.size() - 1; i++)
+        for (ll i = n - 1; i > 0; i--)
         {
-            
-            auto it = *se[i];
-            
+            ans += arr[i] - arr[i - 1];
         }
+
+        cout << ans + 1 << endl;
     }
 }
