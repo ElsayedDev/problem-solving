@@ -28,12 +28,28 @@ int main()
         ll n;
         cin >> n;
         ll arr[n];
+
+        ll min_v = 0;
+
         for (ll i = 0; i < n; i++)
         {
             cin >> arr[i];
+
+            if (i == 0)
+            {
+                min_v = arr[0];
+            }
+            else
+            {
+                min_v = min(arr[i], min_v);
+            }
         }
 
-        
-       
+        for (ll i = 0; i < n; i++)
+        {
+            cout << arr[i] - min_v + 1 << " ";
+        }
+
+        cout << endl;
     }
 }
