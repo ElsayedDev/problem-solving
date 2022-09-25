@@ -19,8 +19,18 @@ int main()
 
     while (t--)
     {
-        string s; 
-        cin>>s;
-        
+        map<char, ll> m;
+        string s;
+        cin >> s;
+        for (ll i = 0; i < s.length(); i++)
+        {
+            m[s[i]]++;
+        }
+        ll count = 0;
+
+        for (auto i : m)
+            count += (i.second + 1) / 2;
+
+        cout << count << endl;
     }
 }
