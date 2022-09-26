@@ -17,58 +17,39 @@ int main()
     ll t;
     cin >> t;
 
+    map<string, int> temp = {
+        {"cakewalk", 0},
+        {"simple", 1},
+        {"easy", 2},
+        {"easy-medium", 3},
+        {"medium", 3},
+        {"medium-hard", 4},
+        {"hard", 4},
+    };
+
     while (t--)
     {
-        map<string, int> temp = {
-            {"cakewalk", 0},
-            {"simple", 0},
-            {"easy", 0},
-            {"easy-medium", 1},
-            {"medium", 1},
-            {"medium-hard", 1},
-            {"hard", 1},
-        };
+        ll arr[5];
+        memset(arr, 0, sizeof(arr));
 
         ll n;
         cin >> n;
 
-        map<string, int> mm;
-
-        for (int i = 0; i < n; i++)
+        for (ll i = 0; i < n; i++)
         {
             string s;
             cin >> s;
-            mm[s]++;
-        }
-        
-        bool flag = false;
 
-        if (mm.size() >= 5)
+            arr[temp[s]]++;
+        }
+
+        if (arr[0] >= 1 && arr[1] >= 1 && arr[2] >= 1 && arr[3] >= 1 && arr[4] >= 1)
         {
-            for (auto i : mm)
-            {
-                if (temp[i.first] == 0)
-                {
-                    if (i.second != 1)
-                    {
-                        flag = true;
-                        break;
-                    }
-                }
-            }
+            cout << "Yes" << endl;
         }
         else
         {
-            flag = true;
-        }
-
-        if (flag)
-        {
-            cout << "NO" << endl;
-        }
-        else
-        {
-            cout << "YES" << endl;
+            cout << "No" << endl;
         }
     }
 }
