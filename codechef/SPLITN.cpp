@@ -18,20 +18,15 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        ll n, ans = 0;
         cin >> n;
-
-        double sq = sqrt(n);
-        double remind = sq - (int)sq;
-
-        int sq_i = (int)sq;
-        if (remind > 0.5)
+        
+        while (n > 0)
         {
-            cout << ((sq_i + 1) * (sq_i + 1)) - n << endl;
+            if (n & 1 == 1)
+                ans++;
+            n = n >> 1;
         }
-        else
-        {
-            cout << n - (sq_i * sq_i) << endl;
-        }
+        cout << ans - 1 << endl;
     }
 }
