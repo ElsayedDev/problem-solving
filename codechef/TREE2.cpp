@@ -1,39 +1,38 @@
 #include <bits/stdc++.h>
 
+#define SPEED                         \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);
+
 #define ll long long int
 
 using namespace std;
 
 int main()
 {
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
+    SPEED
+    
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
 
-    ll t;
+    int t;
     cin >> t;
 
     while (t--)
     {
-        ll n;
+        int n;
         cin >> n;
 
-        ll arr[n];
-
-
-        for (ll i = 0; i < n; i++)
+        int arr[n];
+        set<int> se;
+        
+        for (int i = 0; i < n; i++)
         {
+            
             cin >> arr[i];
+            if (arr[i] > 0)
+                se.insert(arr[i]);
         }
-
-        sort(arr, arr + n);
-
-        ll ans = 0;
-
-        for (ll i = n - 1; i > 0; i--)
-        {
-            ans += arr[i] - arr[i - 1];
-        }
-
-        cout << ans + 1 << endl;
+        cout << se.size() << endl;
     }
 }
