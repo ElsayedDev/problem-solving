@@ -26,7 +26,7 @@ int main()
         for (int i = 0; i < s.length(); i++)
         {
             int count = 1;
-            if (s[i] == 0)
+            if (s[i] == '0')
             {
                 continue;
             }
@@ -37,11 +37,13 @@ int main()
                     if (s[i] == s[j])
                     {
                         count++;
-                        s[j] = 0;
+
+                        s.erase(s.begin() + i);
                     }
                 }
             }
-            s[i] = count;
+            s[i] = count + '0';
         }
+        cout << s << endl;
     }
 }
