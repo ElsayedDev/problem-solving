@@ -22,21 +22,18 @@ int main()
     {
         ll a, b, x;
         cin >> a >> b >> x;
-        ll arr[2] = {abs(b - x), b + x};
-
-        for (int i = 0; i < 2; i++)
+        if (a > b)
         {
+            swap(b, a);
+        }
 
-            if ((arr[i] == abs(a - x)) || (arr[i] == a + x))
-            {
-                cout << "YES" << endl;
-                break;
-            }
-            if (i == 1)
-            {
-                cout << "NO" << endl;
-                break;
-            }
+        if ((b - a) % (2 * x) == 0)
+        {
+            cout << "YES" << endl;
+        }
+        else
+        {
+            cout << "NO" << endl;
         }
     }
 }
