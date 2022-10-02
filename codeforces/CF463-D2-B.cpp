@@ -15,36 +15,17 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    ll n;
+    ll n, ans = 0;
     cin >> n;
-    ll arr[n];
+
     for (ll i = 0; i < n; i++)
-        cin >> arr[i];
-
-    if (arr[n - 2] < arr[n - 1])
     {
-        cout << arr[n - 1];
-        return 0;
-    }
-    else
-    {
-        for (int i = 0; i < n - 1; i++)
+        ll x;
+        cin >> x;
+        if (x > ans)
         {
-            if (arr[i + 1] == arr[i])
-            {
-            }
-            else if (arr[i + 1] > arr[i])
-            {
-
-                arr[i + 1] = 0;
-            }
-            else
-            {
-                arr[i + 1] = arr[i] - arr[i + 1];
-            }
+            ans = x;
         }
-
-        cout << arr[n - 1];
-        return 0;
     }
+    cout << ans;
 }
