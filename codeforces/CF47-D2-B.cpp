@@ -45,16 +45,26 @@ int main()
     }
 
     vector<string> sol;
-    for (int i = 0; i < 3; i++)
+
+    for (int i = 1; i < 2; i++)
     {
-        for (int j = i * 3; j < ans.length() - 3; j += 3)
+        for (int j = i * 3; j < ans.length(); j += 3)
         {
+
             if (ans[i * 3] == ans[j + 1])
             {
                 string res = "";
                 res += ans[j];
                 res += ans[i * 3];
                 res += ans[i * 3 + 1];
+                sol.push_back(res);
+            }
+            else if ((ans[i * 3 - 1] == ans[j + 2]) && (ans[i * 3 + 1] != ans[j + 1]))
+            {
+                string res = "";
+                res += ans[i * 3];
+                res += ans[i * 3 + 1];
+                res += ans[j + 1];
                 sol.push_back(res);
             }
         }
@@ -79,3 +89,6 @@ int main()
         return 0;
     }
 }
+
+
+//
