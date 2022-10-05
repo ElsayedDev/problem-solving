@@ -8,23 +8,6 @@
 
 using namespace std;
 
-string rearrange(string s)
-{
-    string ans = "";
-
-    if (s[1] == '>')
-    {
-        ans += s[2];
-        ans += s[0];
-    }
-    else
-    {
-        ans += s[0];
-        ans += s[2];
-    }
-    return ans;
-}
-
 int main()
 {
     SPEED
@@ -32,42 +15,51 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    string s[3];
+    map<char, int> temp = {
+        {'A', 0},
+        {'B', 0},
+        {'C', 0},
+    };
 
     for (int i = 0; i < 3; i++)
     {
-        cin >> s[i];
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
-        s[i] = rearrange(s[i]);
-    }
-
-    vector<string> v;
-
-    for (int i = 0; i < 3; i++)
-    {
-
-        for (int j = 0; j < 3; j++)
+        char a, b, c;
+        cin >> a >> b >> c;
+        if (b == '>')
         {
-            if (i != j)
-            {
-                v.push_back(s[i] + s[j]);
-            }
+            temp[a]++;
+        }
+        else
+        {
+            temp[c]++;
         }
     }
 
-    for (string value : v)
+    if (temp['A'] == 1 && temp['B'] == 1 && temp['C'] == 1)
     {
-        for (int i = 0; i < value.length() - 1; i++)
-        {
-            if (value[i] == value[i + 1])
-            {
-                cout << value.substr(0, i) << value.substr(i + 1, 3 - i) << endl;
-                return 0;
-            }
-        }
+        cout << "Impossible" << endl;
     }
-    cout << "Impossible" << endl;
+    else
+    {
+        if (temp['A'] == 0)
+            cout << 'A';
+        else if (temp['B'] == 0)
+            cout << 'B';
+        else if (temp['C'] == 0)
+            cout << 'C';
+
+        if (temp['A'] == 1)
+            cout << 'A';
+        else if (temp['B'] == 1)
+            cout << 'B';
+        else if (temp['C'] == 1)
+            cout << 'C';
+
+        if (temp['A'] == 2)
+            cout << 'A';
+        else if (temp['B'] == 2)
+            cout << 'B';
+        else if (temp['C'] == 2)
+            cout << 'C';
+    }
 }
