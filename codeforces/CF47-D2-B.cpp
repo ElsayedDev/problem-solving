@@ -44,37 +44,30 @@ int main()
         s[i] = rearrange(s[i]);
     }
 
-    for (int i = 0; i < 3; i++)
-    {
-        cout<< s[i] << " ";
-    }
-
-    cout << endl;
+    vector<string> v;
 
     for (int i = 0; i < 3; i++)
     {
-        string val = "";
+
         for (int j = 0; j < 3; j++)
         {
             if (i != j)
             {
-                val += s[j];
+                v.push_back(s[i] + s[j]);
             }
         }
+    }
 
-        for (int i = 0; i < 4; i++)
+    for (string value : v)
+    {
+        for (int i = 0; i < value.length() - 1; i++)
         {
-            if (val[i] == val[i + 1])
+            if (value[i] == value[i + 1])
             {
-                // val[i] = '0';
-                cout << val << endl;
+                cout << value.substr(0, i) << value.substr(i + 1, 3 - i) << endl;
                 return 0;
             }
-            cout << val[i] << endl;
         }
-
-        cout << endl;
-      
     }
     cout << "Impossible" << endl;
 }

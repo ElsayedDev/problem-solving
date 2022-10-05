@@ -1,17 +1,1 @@
-BA CB CA 
-C
-B
-C
-A
-
-B
-A
-C
-A
-
-B
-A
-C
-B
-
-Impossible
+ACB
