@@ -8,9 +8,9 @@
 
 using namespace std;
 
-string rearrange(string s, string stack)
+string rearrange(string s)
 {
-    string ans = stack;
+    string ans = "";
 
     if (s[1] == '>')
     {
@@ -32,7 +32,7 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    string s[3], ans = "";
+    string s[3];
 
     for (int i = 0; i < 3; i++)
     {
@@ -41,54 +41,40 @@ int main()
 
     for (int i = 0; i < 3; i++)
     {
-        ans = rearrange(s[i], ans) + " ";
+        s[i] = rearrange(s[i]);
     }
 
-    vector<string> sol;
-
-    for (int i = 1; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for (int j = i * 3; j < ans.length(); j += 3)
-        {
+        cout<< s[i] << " ";
+    }
 
-            if (ans[i * 3] == ans[j + 1])
+    cout << endl;
+
+    for (int i = 0; i < 3; i++)
+    {
+        string val = "";
+        for (int j = 0; j < 3; j++)
+        {
+            if (i != j)
             {
-                string res = "";
-                res += ans[j];
-                res += ans[i * 3];
-                res += ans[i * 3 + 1];
-                sol.push_back(res);
-            }
-            else if ((ans[i * 3 - 1] == ans[j + 2]) && (ans[i * 3 + 1] != ans[j + 1]))
-            {
-                string res = "";
-                res += ans[i * 3];
-                res += ans[i * 3 + 1];
-                res += ans[j + 1];
-                sol.push_back(res);
+                val += s[j];
             }
         }
-    }
 
-    if (sol.size() >= 1)
-    {
-        for (int i = 0; i < sol.size() - 1; i++)
+        for (int i = 0; i < 4; i++)
         {
-            if (sol[i] != sol[i + 1])
+            if (val[i] == val[i + 1])
             {
-                cout << "Impossible" << endl;
+                // val[i] = '0';
+                cout << val << endl;
                 return 0;
             }
+            cout << val[i] << endl;
         }
-        cout << sol[0] << endl;
-        return 0;
+
+        cout << endl;
+      
     }
-    else
-    {
-        cout << "Impossible" << endl;
-        return 0;
-    }
+    cout << "Impossible" << endl;
 }
-
-
-//
