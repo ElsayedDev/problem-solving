@@ -121,21 +121,31 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    ll n, m;
+    ll n, m, f = 0, r = 0;
     cin >> n;
-    ll arr[n];
+    ll arr[100005];
+
     for (ll i = 0; i < n; i++)
-        cin >> arr[i];
+    {
+        ll x;
+        cin >> x;
+        arr[x] = i+1;
+    }
 
     cin >> m;
 
-    ll queries[m];
-    for (ll i = 0; i < m; i++)
-        cin >> queries[i];
+    while (m--)
+    {
+        ll q;
+        cin >> q;
+        f += arr[q];
+        r += n - arr[q] + 1;
+    }
+    cout << f << " " << r << endl;
 
     // first_algo(n, m, arr, queries);
 
-    second_algo(n, m, arr, queries);
+    // second_algo(n, m, arr, queries);
 
     // vector<ll> queries(m);
     // for (ll i = 0; i < m; i++)
