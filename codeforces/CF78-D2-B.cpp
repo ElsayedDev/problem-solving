@@ -15,27 +15,33 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    cout<<8%7;
-    // const string temp = "ROYGBIV";
-    // int n;
-    // cin >> n;
-    // string s = "";
-    // int index = 0;
-    // int fraction = 7;
-    // for (int i = 0; i < n; i++)
-    // {
-    //     if (i % (fraction + 1) == fraction)
-    //     {
-    //         fraction = (fraction - 1) / 2;
-    //         index = fraction;
-    //     }
-    //     else
-    //     {
-    //         index = i % 7;
-    //     }
+    const string temp_1 = "ROYGBIV";
+    const string temp_2 = "BIVGROY";
+    int n;
+    cin >> n;
+    string s = "";
 
-    //     s += temp[index];
-    // }
+    for (int i = 0; i < n; i++)
+    {
+        int right_digit = i % 10;
 
-    // cout << s << endl;
+        if (right_digit >= 7)
+        {
+            if (right_digit == 8)
+            {
+                s += temp_1[4];
+            }
+            else
+            {
+                s += temp_2[right_digit % 7];
+            }
+        }
+
+        else
+        {
+            s += temp_1[right_digit % 7];
+        }
+    }
+
+    cout << s << endl;
 }
