@@ -16,7 +16,7 @@ int main()
     freopen("../output.txt", "w", stdout);
 
     const string temp_1 = "ROYGBIV";
-    const string temp_2 = "BIVGROY";
+    const string temp_2 = "BIVROYG";
     int n;
     cin >> n;
     string s = "";
@@ -25,21 +25,22 @@ int main()
     {
         int right_digit = i % 10;
 
-        if (right_digit >= 7)
+        if (right_digit < 7 && n - i > 1)
         {
-            if (right_digit == 8)
+            s += temp_1[right_digit % 7];
+        }
+        else if (right_digit >= 7)
+        {
+            if (n - i > 1)
             {
-                s += temp_1[4];
+                const string temp_3 = "ROYG";
+
+                s += temp_3[right_digit % 4];
             }
             else
             {
                 s += temp_2[right_digit % 7];
             }
-        }
-
-        else
-        {
-            s += temp_1[right_digit % 7];
         }
     }
 
