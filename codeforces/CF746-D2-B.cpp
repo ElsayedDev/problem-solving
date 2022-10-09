@@ -20,25 +20,43 @@ int main()
     string s, ans = "";
     cin >> s;
 
-    while (n)
+    if (n % 2 == 0)
     {
-        if (n % 2 == 0)
-        {
-            ans += s[n / 2 - 1];
-            // ans += "_";
-            s.erase(s.begin() + (n / 2 - 1));
-        }
-        else
 
+        for (int i = n - 1; i >= 0; i--)
         {
-            ans += s[n / 2 + 1];
-            if (n != 1)
+            if (i % 2 == 0)
             {
-
-                s.erase(s.begin() + (n / 2 + 1));
+                ans += s[i];
             }
         }
-        n--;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (i % 2 != 0)
+            {
+                ans += s[i];
+            }
+        }
     }
+    else
+    {
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (i % 2 != 0)
+            {
+                ans += s[i];
+            }
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            if (i % 2 == 0)
+            {
+                ans += s[i];
+            }
+        }
+    }
+
     cout << ans << endl;
 }
