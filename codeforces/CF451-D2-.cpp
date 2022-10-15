@@ -18,43 +18,65 @@ int main()
     ll n;
     cin >> n;
 
-    vector<ll> v(n);
+    ll arr[n], temp[n];
 
-    for (ll i = 0; i < n; i++)
-        cin >> v[i];
-
-    int flag = 0;
-    ll a, b;
     for (ll i = 0; i < n; i++)
     {
-        if (flag > 1 && i < n - 1)
-        {
-            cout << "no";
-            return 0;
-        }
+        ll x;
+        cin >> x;
+        arr[i] = x;
+        temp[i] = x;
+    }
+
+    sort(temp, temp + n);
+
+    ll l = -1, r = -1;
+
+    for (ll i = 0; i < n; i++)
+    {
+        if (arr[i] == temp[i])
+            continue;
         else
         {
-            if (i > 0 && i < n - 1)
+            if (l == -1)
             {
-                if (v[i - 1] > v[i] || v[i] < v[i + 1])
-                {
-                    flag++;
-
-                    a = v[i - 1];
-                    b = v[i + 1];
-
-                    // swap
-                    ll temp = v[i];
-
-                    v[i] = v[i - 1];
-                    v[i - 1] = temp;
-                }
+                l = i;
+            }
+            else if (r == -1)
+            {
+                r = i;
+            }
+            else
+            {
+                cout << "no";
+                return 0;
             }
         }
     }
-    if (flag > 1)
-        cout << "no";
-    else
+    if (arr[r] < arr[l])
+    {
+        swap(arr[l], arr[r]);
+        for (ll i = 0; i < n; i++)
+        {
+            if (arr[i] != temp[i])
+            {
+                cout << "no";
+                return 0;
+            }
+        }
+
         cout << "yes\n"
-             << b << " " << a;
+             << l + 1 << " " << r + 1;
+    }
+
+    else if (r == -1 && l == -1)
+    {
+        cout << "yes\n"
+             << 1 << " " << 1;
+    }
+    else
+    {
+        cout << "no";
+        return 0;
+    }
 }
