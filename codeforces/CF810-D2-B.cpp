@@ -31,7 +31,7 @@ int main()
          { return a.second > b.second; });
 
 
-    ll ans = 0;
+    ll ans = 0; 
     for (ll i = 0; i < n; i++)
     {
 
