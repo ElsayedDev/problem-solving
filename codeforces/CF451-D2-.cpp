@@ -8,6 +8,23 @@
 
 using namespace std;
 
+ll n;
+
+void reverse(ll arr[], ll l, ll r)
+{
+    ll arr2[n];
+
+    for (ll i = l, j = r; i <= r; i++, j--)
+    {
+        arr2[i] = arr[j];
+    }
+
+    for (ll i = l; i <= r; i++)
+    {
+        arr[i] = arr2[i];
+    }
+}
+
 int main()
 {
     SPEED
@@ -15,7 +32,6 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    ll n;
     cin >> n;
 
     ll arr[n], temp[n];
@@ -34,49 +50,39 @@ int main()
 
     for (ll i = 0; i < n; i++)
     {
-        if (arr[i] == temp[i])
-            continue;
-        else
+        if (arr[i] != temp[i])
         {
-            if (l == -1)
-            {
-                l = i;
-            }
-            else if (r == -1)
-            {
-                r = i;
-            }
-            else
-            {
-                cout << "no";
-                return 0;
-            }
+            l = i;
+            break;
         }
     }
-    if (arr[r] < arr[l])
+    for (ll i = n - 1; i >= 0; i--)
     {
-        swap(arr[l], arr[r]);
-        for (ll i = 0; i < n; i++)
+        if (arr[i] != temp[i])
         {
-            if (arr[i] != temp[i])
-            {
-                cout << "no";
-                return 0;
-            }
+            r = i;
+            break;
         }
-
-        cout << "yes\n"
-             << l + 1 << " " << r + 1;
     }
 
-    else if (r == -1 && l == -1)
+    if (l == -1)
     {
-        cout << "yes\n"
-             << 1 << " " << 1;
-    }
-    else
-    {
-        cout << "no";
+        cout << "yes" << endl;
+        cout << 1 << " " << 1 << endl;
         return 0;
     }
+
+    reverse(arr, l, r);
+
+    for (ll i = 0; i < n; i++)
+    {
+        if (arr[i] != temp[i])
+        {
+            cout << "no" << endl;
+            return 0;
+        }
+    }
+
+    cout << "yes\n"
+         << l + 1 << " " << r + 1;
 }
