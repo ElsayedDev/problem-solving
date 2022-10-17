@@ -1,52 +1,63 @@
 #include <bits/stdc++.h>
+using namespace std;
 
-#define SPEED                         \
-    ios_base::sync_with_stdio(false); \
+void ReadDataWithSpeed()
+{
+    ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+}
 
 #define ll long long int
 
-using namespace std;
+struct element
+{
+    ll a;
+    ll b;
+    ll eq;
+};
 
 int main()
 {
-    SPEED
+    ReadDataWithSpeed();
 
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
-
-    ll n, f;
+    ll n,
+        f;
     cin >> n >> f;
-    vector<pair<ll, ll>> v;
+
+    element arr[n];
 
     for (ll i = 0; i < n; i++)
     {
-        ll a, b;
-        cin >> a >> b;
-        v.push_back({a, b});
+        cin >> arr[i].a >> arr[i].b;
+        arr[i].eq = min(arr[i].a, arr[i].b);
     }
 
-    // sort v by b
-    sort(v.begin(), v.end(), [](pair<ll, ll> a, pair<ll, ll> b)
-         { return a.second > b.second; });
+    ll ans = 0;
+    ll i = 0;
+    // sort array by eq
+    sort(arr, arr + n, [](element a, element b)
+         { return; });
 
+    if (f == 0)
+    {
+        f = -1;
+    }
 
-    ll ans = 0; 
-    for (ll i = 0; i < n; i++)
+    while ((f != 0) && i < n)
     {
 
-        if (v[i].first != 0 && v[i].second * 2 >= v[i].first)
+        cout << arr[i].a << " " << arr[i].b << " " << arr[i].eq << endl;
+        if ((arr[i].a * arr[i].b * arr[i].eq) > 0)
         {
-
-            ans += v[i].second;
+            ans += arr[i].b;
             f--;
         }
 
-        if (f == 0)
-        {
-            break;
-        }
+        i++;
     }
 
-    cout << ans << endl;
+    cout << ans;
 }
