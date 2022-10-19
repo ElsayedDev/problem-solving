@@ -27,27 +27,22 @@ int main()
     {
         ll n;
         cin >> n;
-        ll arr[n];
+        vector<ll> v(n);
 
-        ll min_v = 0;
+        ll sum = 0;
 
         for (ll i = 0; i < n; i++)
         {
-            cin >> arr[i];
+            ll x;
+            cin >> x;
+            sum += x;
 
-            if (i == 0)
-            {
-                min_v = arr[0];
-            }
-            else
-            {
-                min_v = min(arr[i], min_v);
-            }
+            v.push_back(x);
         }
 
         for (ll i = 0; i < n; i++)
         {
-            cout << arr[i] - min_v + 1 << " ";
+            cout << abs(v[i] - (sum/(n+1))) << " ";
         }
 
         cout << endl;
