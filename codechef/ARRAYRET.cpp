@@ -8,13 +8,6 @@
 
 using namespace std;
 
-ll count_numbers(ll n)
-{
-    ll x = (n * (n + 1) / 2) - 1;
-
-    return (x);
-}
-
 int main()
 {
     SPEED
@@ -25,24 +18,24 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        ll n, sum = 0;
         cin >> n;
-        vector<ll> v(n);
 
-        ll sum = 0;
+        ll arr[n];
 
         for (ll i = 0; i < n; i++)
         {
-            ll x;
-            cin >> x;
-            sum += x;
-
-            v.push_back(x);
+            cin >> arr[i];
+            sum += arr[i];
         }
 
+        ll s = (sum / (n + 1));
+
         for (ll i = 0; i < n; i++)
         {
-            cout << abs(v[i] - (sum/(n+1))) << " ";
+            ll x = arr[i] - s;
+
+            cout << x << " ";
         }
 
         cout << endl;
