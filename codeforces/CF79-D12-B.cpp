@@ -8,12 +8,7 @@
 
 using namespace std;
 
-const map<char, string> temp = {
-    {'w', "Waste"},
-    {'c', "Carrots"},
-    {'k', "Kiwis"},
-    {'g', "Grapes"},
-};
+const string temp_arr[3] = {"Carrots", "Kiwis", "Grapes"};
 
 int main()
 {
@@ -21,10 +16,14 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
+    int x = 2, y = 1, mm = 3;
+    cout << (y * (x ) +  );
+    return 0;
+
     ll n, m, k, t;
     cin >> n >> m >> k >> t;
 
-    char arr[n][m];
+    int arr[n][m];
 
     memset(arr, 0, sizeof(arr));
 
@@ -32,43 +31,41 @@ int main()
     {
         ll x, y;
         cin >> x >> y;
-        arr[x - 1][y - 1] = 'w';
-    }
-
-    ll index = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        for (ll j = 0; j < m; j++)
-        {
-            if (arr[i][j] == 'w')
-            {
-                arr[i][j] = 'w';
-            }
-            else
-            {
-                if (index % 3 == 0)
-                {
-                    arr[i][j] = 'c';
-                }
-                else if (index % 3 == 1)
-                {
-                    arr[i][j] = 'k';
-                }
-                else
-                {
-                    arr[i][j] = 'g';
-                }
-                index++;
-            }
-        }
+        arr[x - 1][y - 1] = i + 1;
     }
 
     for (ll i = 0; i < t; i++)
     {
         ll x, y;
         cin >> x >> y;
-        cout << temp.at(arr[x - 1][y - 1]) << endl;
+
+        if (arr[x - 1][y - 1] > 0)
+        {
+            cout << "Waste" << endl;
+        }
+        else
+        {
+            ll w = 0;
+            ll s = x;
+            while (s)
+            {
+                for (ll j = y - 1; j >= 0; j--)
+                {
+                    if (arr[s - 1][j] > 0)
+                    {
+                        w = arr[s - 1][j];
+                        break;
+                    }
+                }
+
+                s--;
+            }
+            // int pos = x * y - w - 1;
+            // cout << temp_arr[pos % 3] << endl;
+
+            // number of cells farmers from x , y
+
+            ll total_cell = x * (y - 1) + y % m;
+        }
     }
 }
-
-//
