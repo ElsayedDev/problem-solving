@@ -10,11 +10,6 @@ using namespace std;
 
 const string temp_arr[3] = {"Carrots", "Kiwis", "Grapes"};
 
-typedef struct holder
-{
-    int y, x, total;
-};
-
 int main()
 {
     SPEED
@@ -24,58 +19,44 @@ int main()
     ll n, m, k, t;
     cin >> n >> m >> k >> t;
 
-    int arr[m][n];
-
-    memset(arr, 0, sizeof(arr));
-
-    map<int, int> blocks;
-    for (ll i = 0; i < k; i++)
+    map<int, vector<int>> blocks;
+    for (int i = 0; i < k; i++)
     {
-        ll x, y;
+        int x, y;
         cin >> x >> y;
-
-        if (blocks[y] <= 0)
-        {
-            blocks[y] = x;
-        }
-        else
-        {
-            blocks[y] += blocks[y];
-        }
+        blocks[y].push_back(x);
     }
 
-    for (ll i = 0; i < t; i++)
+start:
+    for (int i = 0; i < t; i++)
     {
-        ll y, x;
+        int x, y;
         cin >> x >> y;
 
-        if (blocks[y] == x)
-        {
-            cout << "Waste" << endl;
-            continue;
-        }
-        else
-        {
-            ll w = 0;
-            ll s = y;
+        int blocks_count = 0;
 
-            while (s > 0)
+        for (int j = y; j > 0; j--)
+        {
+
+            if (blocks[j].size() == 0)
+                continue;
+            // cout << "j: " << j << " size:" << blocks[j].size() << endl;
+
+            for (int kj = 0; j == y ? kj < x : kj < blocks[j].size(); kj++)
             {
-                if (blocks[s] > 0)
+                if (j == y && x == blocks[j][kj])
                 {
-                    w++;
-                    break;
+                    cout << "Waste" << endl;
+                    goto start;
                 }
-
-                s--;
+                blocks_count++;
             }
-
-            // ll pos = (y * m + x) - w;
-            // cout << temp_arr[(pos ) % 3] << endl;
-
-            // cout << temp_arr[pos % 3] << endl;
         }
+        // cout << endl;
+        int total = (y - 1) * n - blocks_count + x - 1;
+        cout << "all: " << (y - 1) * n << " bc: " << blocks_count << " x: " << x << " result: " << total << endl;
+        // cout << temp_arr[(total) % 3] << endl;
     }
-}
 
-//
+    return 0;
+}
