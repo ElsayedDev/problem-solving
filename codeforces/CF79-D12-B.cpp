@@ -22,40 +22,50 @@ int main()
     map<int, vector<int>> blocks;
     for (int i = 0; i < k; i++)
     {
-        int x, y;
-        cin >> x >> y;
+        int y, x;
+        cin >> y >> x;
         blocks[y].push_back(x);
     }
 
-start:
     for (int i = 0; i < t; i++)
     {
-        int x, y;
-        cin >> x >> y;
+    start:
+        int y, x;
+        cin >> y >> x;
+        int count = 0;
 
-        int blocks_count = 0;
-
+        // count blocks
         for (int j = y; j > 0; j--)
         {
 
-            if (blocks[j].size() == 0)
-                continue;
-            // cout << "j: " << j << " size:" << blocks[j].size() << endl;
-
-            for (int kj = 0; j == y ? kj < x : kj < blocks[j].size(); kj++)
+            if (j != y)
             {
-                if (j == y && x == blocks[j][kj])
+                count += blocks[j].size();
+            }
+            else
+            {
+                for (int jk = 0; jk < x && jk < blocks[j].size(); jk++)
                 {
-                    cout << "Waste" << endl;
-                    goto start;
+                    if (blocks[j][jk] == x)
+                    {
+                        cout << "Waste" << endl;
+                        i++;
+                        goto start;
+                    }
+                    if (blocks[j][jk] > x)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        count++;
+                    }
                 }
-                blocks_count++;
             }
         }
-        // cout << endl;
-        int total = (y - 1) * n - blocks_count + x - 1;
-        cout << "all: " << (y - 1) * n << " bc: " << blocks_count << " x: " << x << " result: " << total << endl;
-        // cout << temp_arr[(total) % 3] << endl;
+
+        int ans = (y - 1) * m + x - count;
+        cout << temp_arr[(ans - 1) % 3] << endl;
     }
 
     return 0;
