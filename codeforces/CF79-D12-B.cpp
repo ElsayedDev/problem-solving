@@ -1,24 +1,24 @@
 #include <bits/stdc++.h>
-
+ 
 #define SPEED                         \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-
+ 
 #define ll long long int
-
+ 
 using namespace std;
-
+ 
 const string temp_arr[3] = {"Carrots", "Kiwis", "Grapes"};
-
+ 
 int main()
 {
     SPEED
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
-
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
+ 
     ll n, m, k, t;
     cin >> n >> m >> k >> t;
-
+ 
     map<int, vector<int>> blocks;
     for (int i = 0; i < k; i++)
     {
@@ -26,18 +26,19 @@ int main()
         cin >> y >> x;
         blocks[y].push_back(x);
     }
-
+ 
     for (int i = 0; i < t; i++)
     {
-    start:
+ 
         int y, x;
         cin >> y >> x;
         int count = 0;
-
+        bool flag = false;
+ 
         // count blocks
         for (int j = y; j > 0; j--)
         {
-
+ 
             if (j != y)
             {
                 count += blocks[j].size();
@@ -49,10 +50,10 @@ int main()
                     if (blocks[j][jk] == x)
                     {
                         cout << "Waste" << endl;
-                        i++;
-                        goto start;
+                        flag = true;
+                        break;
                     }
-                    if (blocks[j][jk] > x)
+                    else if (blocks[j][jk] > x)
                     {
                         break;
                     }
@@ -63,10 +64,14 @@ int main()
                 }
             }
         }
-
-        int ans = (y - 1) * m + x - count;
-        cout << temp_arr[(ans - 1) % 3] << endl;
+ 
+        if (!flag)
+        {
+            int ans = (y - 1) * m + x - count;
+ 
+            cout << temp_arr[(ans - 1) % 3] << endl;
+        }
     }
-
+ 
     return 0;
 }
