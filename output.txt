@@ -1,14 +1,1 @@
-x x x x . . 
-x x x . . x 
-x x x x . . 
-x x x x . . 
-x x x x x . 
-jk: 0 block: 2
-jk: 1 block: 6
- j: 1 blocks[j][f]: 6
- j: 1 blocks[j][f]: 4
- j: 1 blocks[j][f]: 3
- j: 1 blocks[j][f]: 1
- j: 1 blocks[j][f]: 2
-y-1*m: 6 count: 6 x: 4
-Carrots
+YES
