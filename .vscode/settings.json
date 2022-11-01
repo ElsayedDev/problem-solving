@@ -73,7 +73,19 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "valarray": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "barrier": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "coroutine": "cpp",
+    "latch": "cpp",
+    "numbers": "cpp",
+    "ranges": "cpp",
+    "semaphore": "cpp",
+    "source_location": "cpp",
+    "span": "cpp",
+    "stop_token": "cpp",
+    "syncstream": "cpp"
   },
   "cSpell.words": [
     "Sweed"
