@@ -2,7 +2,7 @@
 
 using namespace std;
 
-typedef struct
+typedef struct edgenode
 {
     int y;                 /* adjacency info */
     int weight;            /* edge weight, if any */
