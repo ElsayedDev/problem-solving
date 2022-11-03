@@ -62,8 +62,8 @@ void bfs(queue<pair<string, char>> qu, string board, string start)
 
                 if (cur_player == board[i])
                 {
-                    qu.push({cur, shift_player(cur_player)});
                     cur[i] = cur_player;
+                    qu.push({cur, shift_player(cur_player)});
                 }
             }
         }
