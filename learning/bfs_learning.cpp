@@ -20,10 +20,14 @@ int main()
         {"d", {"f"}},
     };
 
+    map<string, bool> searched;
+
     queue<vector<string>> qu;
     qu.push(values["s"]);
 
+    // answer of the question 2 (the shortest path to find "f")
     int path = 0;
+
     while (!qu.empty())
     {
         vector<string> value = qu.front();
@@ -40,7 +44,15 @@ int main()
             }
             else
             {
-                qu.push(values[value[i]]);
+                // already searched & added
+                if (searched[value[i]])
+                {
+                    // nothing
+                }
+                else
+                {
+                    qu.push(values[value[i]]);
+                }
             }
         }
     }
