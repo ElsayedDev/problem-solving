@@ -25,6 +25,9 @@ int main()
     queue<vector<string>> qu;
     qu.push(values["s"]);
 
+    // searched first element
+    searched["s"] = true;
+
     // answer of the question 2 (the shortest path to find "f")
     int path = 0;
 
@@ -51,6 +54,7 @@ int main()
                 }
                 else
                 {
+                    searched[value[i]] = true;
                     qu.push(values[value[i]]);
                 }
             }
