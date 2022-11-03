@@ -1,1 +1,1 @@
-YES
+shortest path is: 2
