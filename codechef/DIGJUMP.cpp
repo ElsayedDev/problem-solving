@@ -27,64 +27,6 @@ map<string, int>::iterator find_lowest_cost_node(map<string, int> &costs, map<st
     return lowest_cost_node;
 }
 
-pair<vector<string>, int> dijkstra(Node graph)
-{
-    // results
-    pair<vector<string>, int> result;
-
-    if (graph.empty())
-    {
-        return result;
-    }
-
-    // to check if it processed or not
-    map<string, int> processed;
-
-    // path
-    map<string, string> parents;
-
-    // cost of each vertices from start to x
-    map<string, int> costs;
-
-    // initial cost
-    costs["start"] = 0;
-
-    // first node
-    map<string, int>::iterator node = find_lowest_cost_node(costs, processed);
-
-    while (node != costs.end())
-    {
-        map<string, int> neighbor = graph[node->first];
-        int previous_cost = node->second;
-
-        for (map<string, int>::iterator iter_neighbor = neighbor.begin(); iter_neighbor != neighbor.end(); ++iter_neighbor)
-        {
-            int total_cost = (previous_cost + iter_neighbor->second);
-            if (costs.find(iter_neighbor->first) == costs.end() || total_cost < costs[iter_neighbor->first])
-            {
-                costs[iter_neighbor->first] = total_cost;
-                parents[iter_neighbor->first] = node->first;
-            }
-        }
-
-        // it's ok
-        processed[node->first]++;
-
-        // go to next
-        node = find_lowest_cost_node(costs, processed);
-    }
-
-    result.second = costs["fin"];
-    result.first.push_back("fin");
-
-    while (result.first.back() != "start")
-    {
-        result.first.push_back(parents[result.first.back()]);
-    }
-
-    return result;
-}
-
 int dijkstra_count(Node2 graph, string start)
 {
     // results
@@ -96,13 +38,13 @@ int dijkstra_count(Node2 graph, string start)
     }
 
     // to check if it processed or not
-    map<string, int> processed={};
+    map<string, int> processed = {};
 
     // path
-    map<string, string> parents={};
+    map<string, string> parents = {};
 
     // cost of each vertices from start to x
-    map<string, int> costs={};
+    map<string, int> costs = {};
 
     // initial cost
     costs[start] = graph[start].size();
@@ -112,25 +54,31 @@ int dijkstra_count(Node2 graph, string start)
 
     while (node != costs.end())
     {
-        set<string> neighbor = graph[node->first];
-        int previous_cost = node->second;
-
-        for (set<string>::iterator iter_neighbor = neighbor.begin(); iter_neighbor != neighbor.end(); ++iter_neighbor)
-        {
-            int total_cost = (previous_cost + iter_neighbor->second);
-            if (costs.find(iter_neighbor->first) == costs.end() || total_cost < costs[iter_neighbor->first])
-            {
-                costs[iter_neighbor->first] = total_cost;
-                parents[iter_neighbor->first] = node->first;
-            }
-        }
-
-        // it's ok
-        processed[node->first]++;
-
-        // go to next
-        node = find_lowest_cost_node(costs, processed);
+        cout << node->first << " " << node->second << endl;
+        node++;
     }
+
+    // while (node != costs.end())
+    // {
+    //     set<string> neighbor = graph[node->first];
+    //     int previous_cost = node->second;
+
+    //     for (set<string>::iterator iter_neighbor = neighbor.begin(); iter_neighbor != neighbor.end(); ++iter_neighbor)
+    //     {
+    //         int total_cost = (previous_cost + iter_neighbor->second);
+    //         if (costs.find(iter_neighbor->first) == costs.end() || total_cost < costs[iter_neighbor->first])
+    //         {
+    //             costs[iter_neighbor->first] = total_cost;
+    //             parents[iter_neighbor->first] = node->first;
+    //         }
+    //     }
+
+    //     // it's ok
+    //     processed[node->first]++;
+
+    //     // go to next
+    //     node = find_lowest_cost_node(costs, processed);
+    // }
 
     return result;
 }
