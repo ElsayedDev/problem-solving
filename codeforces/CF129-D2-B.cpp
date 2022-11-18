@@ -101,3 +101,4 @@ int main()
     }
     cout << total_groups << endl;
 }
+
