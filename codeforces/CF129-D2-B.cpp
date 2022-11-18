@@ -102,3 +102,49 @@ int main()
     cout << total_groups << endl;
 }
 
+/*
+
+Client 25 SP
+
+3 sp Auth 
+5 sp home page 
+1 sp notification
+4 sp details
+5 sp chat
+2 sp profile
+1 sp favorites
+5 sp filter
+
+Developers 13 SP
+
+Admin
+Home page -> Products 8 SP
+Add product 
+Edit product
+Remove product 
+Customer service developers -> Emails ( add & remove ) 
+Number of customers
+
+Customer Service Developer ( Chat )
+
+Chat with new customers
+Notification with customers
+
+Admin 7 SP
+
+List of customers 
+Booking ID
+Name
+Contacts 
+Time 
+Developer name
+Notifications
+With new customer
+Add new developer
+Add with his Email
+
+
+
+
+
+*/
