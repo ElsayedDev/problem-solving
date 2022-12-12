@@ -19,38 +19,21 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, min_element = 0, ans = 0;
+        ll n, p = 0;
         cin >> n;
-        ll arr[n];
-
-        vector<ll> even_positions;
 
         // read data
         for (ll i = 0; i < n; i++)
         {
-            cin >> arr[i];
+            ll x;
+            cin >> x;
 
-            if (i == 0)
+            if (x % 2 == 0)
             {
-                min_element = arr[i];
-            }
-
-            else if (arr[i] < min_element)
-            {
-                min_element = arr[i];
-            }
-
-            if (arr[i] % 2 == 0)
-            {
-                even_positions.push_back(arr[i]);
+                p++;
             }
         }
 
-        for (auto x : even_positions)
-        {
-            ans += x / min_element - min_element;
-        }
-
-        cout << ans << endl;
+        cout << ((p != n) ? p : 0) << endl;
     }
 }
