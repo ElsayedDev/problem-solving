@@ -17,13 +17,14 @@ int main()
 
     int t;
     cin >> t;
-    while (--t)
+    while (t--)
     {
-        ll n, min_element = 0;
+        ll n, min_element = 0, ans = 0;
         cin >> n;
         ll arr[n];
 
         vector<ll> even_positions;
+
         // read data
         for (ll i = 0; i < n; i++)
         {
@@ -45,11 +46,11 @@ int main()
             }
         }
 
-        if (even_positions.size() == 0)
+        for (auto x : even_positions)
         {
-            cout << 0 << endl;
-            break;
+            ans += x / min_element - min_element;
         }
-        
+
+        cout << ans << endl;
     }
 }
