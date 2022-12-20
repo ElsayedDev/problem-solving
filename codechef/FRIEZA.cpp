@@ -15,6 +15,15 @@ int main()
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
+    map<char, bool> r = {
+        {'f', true},
+        {'r', true},
+        {'i', true},
+        {'e', true},
+        {'z', true},
+        {'a', true},
+    };
+
     int t;
     cin >> t;
 
@@ -23,27 +32,35 @@ int main()
         string s;
         cin >> s;
 
+        int in_r_counter = 0, not_in_r_counter = 0;
+
         for (int i = 0; i < s.length(); i++)
         {
-            int count = 1;
-            if (s[i] == '0')
+            if (r[s[i]])
             {
-                continue;
+                if (in_r_counter == 0 && not_in_r_counter != 0)
+                {
+                    cout << not_in_r_counter;
+                    not_in_r_counter = 0;
+                }
+                in_r_counter++;
             }
             else
             {
-                for (int j = i + 1; j < s.length(); j++)
+                if (not_in_r_counter == 0 && in_r_counter != 0)
                 {
-                    if (s[i] == s[j])
-                    {
-                        count++;
-
-                        s.erase(s.begin() + i);
-                    }
+                    cout << in_r_counter;
+                    in_r_counter = 0;
                 }
+                not_in_r_counter++;
             }
-            s[i] = count + '0';
         }
-        cout << s << endl;
+        if (not_in_r_counter != 0)
+            cout << not_in_r_counter;
+        
+        if (in_r_counter != 0)
+            cout << in_r_counter;
+
+        cout << endl;
     }
 }
