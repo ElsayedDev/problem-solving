@@ -31,12 +31,15 @@ int main()
             sum += arr[i];
         }
 
-        int sum_given=  v * (n + k);
+        int sum_given = v * (n + k);
 
-        if(sum_given > sum && (sum_given - sum) %k ==0){
-                cout << (sum_given -sum) / k<<endl;
-        }  else {
-            cout << -1 <<endl;
+        if (sum_given > sum && (sum_given - sum) % k == 0)
+        {
+            cout << (sum_given - sum) / k << endl;
+        }
+        else
+        {
+            cout << -1 << endl;
         }
     }
 }
