@@ -1,18 +1,17 @@
 {
   "configurations": [
     {
-      "name": "linux-gcc-x64",
+      "name": "windows-gcc-x86",
       "includePath": [
         "${workspaceFolder}/**"
       ],
-      "compilerPath": "/usr/bin/gcc",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "linux-gcc-x64",
+      "compilerPath": "C:/MinGW/bin/gcc.exe",
+      "cStandard": "gnu17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "windows-gcc-x86",
       "compilerArgs": [
         ""
-      ],
-      "configurationProvider": "ms-vscode.makefile-tools"
+      ]
     }
   ],
   "version": 4
