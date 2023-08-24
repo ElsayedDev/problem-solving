@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "common.h"
 
-#include "maximum-depth-of-binary-tree.h"
+#include "balanced-binary-tree.h"
 
 using namespace std;
 
@@ -25,7 +25,9 @@ int main()
     TreeNode *p = new TreeNode(1, nullptr, new TreeNode(2, new TreeNode(3), nullptr));
     TreeNode *q = new TreeNode(1, nullptr, new TreeNode(2, new TreeNode(3), nullptr));
 
-    solution.maxDepth(p);
+    vector<int> v = {-10, -3, 0, 5, 9};
+
+    solution.isBalanced(p);
 
     return 0;
 }
