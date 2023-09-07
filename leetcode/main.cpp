@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "common.h"
 
-#include "pascals-triangle-ii.h"
+#include "best-time-to-buy-and-sell-stock.h"
 
 using namespace std;
 
