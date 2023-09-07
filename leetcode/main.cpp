@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "common.h"
 
-#include "best-time-to-buy-and-sell-stock.h"
+#include "valid-palindrome.h"
 
 using namespace std;
 
