@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "common.h"
 
-#include "balanced-binary-tree.h"
+#include "pascals-triangle-ii.h"
 
 using namespace std;
 
@@ -25,9 +25,9 @@ int main()
     TreeNode *p = new TreeNode(1, nullptr, new TreeNode(2, new TreeNode(3), nullptr));
     TreeNode *q = new TreeNode(1, nullptr, new TreeNode(2, new TreeNode(3), nullptr));
 
-    vector<int> v = {-10, -3, 0, 5, 9};
+    vector<int> v = {2, 7, 11, 15};
 
-    solution.isBalanced(p);
+    vector<int> out = solution.getRow(5);
 
     return 0;
 }
