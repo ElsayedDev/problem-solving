@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#include "common.h"
+using namespace std;
+
+class Solution
+{
+
+public:
+    vector<vector<int>> threeSum(vector<int> &nums)
+    {
+        sort(nums.begin(), nums.end());
+
+        vector<vector<int>> res;
+
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (nums[i] > 0)
+                break;
+
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+
+            int low = i + 1, high = nums.size() - 1, sum = 0;
+
+            while (low < high)
+            {
+                sum = nums[i] + nums[low] + nums[high];
+                if (sum > 0)
+                    high--;
+
+                else if (sum < 0)
+                    low++;
+
+                // result
+                else
+                {
+                    res.push_back({nums[i], nums[low], nums[high]});
+
+                    // for the sam i but try other sol
+                    int last_low = nums[low], last_high = nums[high];
+
+                    while (low < high && nums[low] == last_low)
+                        low++;
+
+                    while (low < high && nums[high] == last_high)
+                        high--;
+                }
+            }
+        }
+
+        return res;
+    }
+};
