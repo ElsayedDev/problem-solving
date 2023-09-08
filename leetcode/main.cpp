@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "common.h"
 
-#include "valid-palindrome.h"
+#include "reverse-integer.h"
 
 using namespace std;
 
@@ -27,7 +27,7 @@ int main()
 
     vector<int> v = {2, 7, 11, 15};
 
-    vector<int> out = solution.getRow(5);
+    auto out = solution.reverse(5);
 
     return 0;
 }
