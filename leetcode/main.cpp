@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "common.h"
 
-#include "jump-game.h"
+#include "jump-game-ii.h"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ void ReadDataWithSpeed()
     cin.tie(NULL);
 
     // freopen("../input.txt", "r", stdin);
-    // freopen("../output.txt", "w", stdout);
+    freopen("../output.txt", "w", stdout);
 }
 
 int main()
@@ -25,10 +25,10 @@ int main()
     TreeNode *p = new TreeNode(1, nullptr, new TreeNode(2, new TreeNode(3), nullptr));
     TreeNode *q = new TreeNode(1, nullptr, new TreeNode(2, new TreeNode(3), nullptr));
 
-    vector<int> v = {2, 3, 1, 1, 4};
+    vector<int> v = {2, 3, 0, 1, 4};
 
-    bool f = solution.canJump(v);
-    // cout << out << endl;
+    int f = solution.jump(v);
+    cout << f << endl;
 
     // for (auto element : v)
     // {
