@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// void ReadDataWithSpeed()
-// {
-//     ios_base::sync_with_stdio(false);
-//     cin.tie(NULL);
+ void ReadDataWithSpeed()
+ {
+     ios_base::sync_with_stdio(false);
+     cin.tie(NULL);
 
-//     freopen("../../input.txt", "r", stdin);
-//     freopen("../../output.txt", "w", stdout);
-// }
+     freopen("../../input.txt", "r", stdin);
+     freopen("../../output.txt", "w", stdout);
+ }
 
 bool vanishing_pitch(int v, int t, int s, int d)
 {
