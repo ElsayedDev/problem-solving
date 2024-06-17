@@ -4,7 +4,8 @@ using namespace std;
 
 #define ll long long int
 
-void ReadDataWithSpeed() {
+void ReadDataWithSpeed()
+{
     cin.tie(nullptr)->sync_with_stdio(false);
 
 #ifndef ONLINE_JUDGE
@@ -15,10 +16,33 @@ void ReadDataWithSpeed() {
 #endif
 }
 
+bool isValidSudoku(vector<vector<char>> &board)
+{
+    vector<unordered_set<int>> row(9), col(9), box(9);
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            char ch = board[i][j];
+            if (ch == '.')
+                continue;
 
+            int num = ch - '0';
+            int boxIndex = (i / 3) * 3 + j / 3;
+            if (row[i].count(num) || col[j].count(num) || box[boxIndex].count(num))
+                return false;
+
+            row[i].insert(num);
+            col[j].insert(num);
+            box[boxIndex].insert(num);
+        }
+    }
+
+    return true;
+}
 
 //
-//int canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
+// int canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
 //
 //    int n = gas.size(), total = 0, rev = 0, res = 0;
 //    for (int i = 0; i < n; ++i) {
@@ -34,7 +58,7 @@ void ReadDataWithSpeed() {
 //}
 //
 //
-//string intToRoman(int num) {
+// string intToRoman(int num) {
 //    string m[] = {"", "M", "MM", "MMM"};
 //    string c[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
 //    string x[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
@@ -43,29 +67,29 @@ void ReadDataWithSpeed() {
 //    return m[num / 1000] + c[(num % 1000) / 100] + x[(num % 100) / 10] + i[num % 10];
 //}
 
-//vector<vector<int>> merge(vector<vector<int>> &intervals) {
-//    vector<vector<int>> ans;
-//    sort(begin(intervals), end(intervals));
-//    int a = intervals[0][0], b = intervals[0][1];
-//    for (auto v: intervals) {
-//        if (v[0] > b) {
-//            ans.push_back({a, b});
-//            a = v[0];
-//            b = v[1];
-//        } else if (v[1] > b) b = v[1];
-//    }
-//    ans.push_back({a, b});
-//    return ans;
-//}
+// vector<vector<int>> merge(vector<vector<int>> &intervals) {
+//     vector<vector<int>> ans;
+//     sort(begin(intervals), end(intervals));
+//     int a = intervals[0][0], b = intervals[0][1];
+//     for (auto v: intervals) {
+//         if (v[0] > b) {
+//             ans.push_back({a, b});
+//             a = v[0];
+//             b = v[1];
+//         } else if (v[1] > b) b = v[1];
+//     }
+//     ans.push_back({a, b});
+//     return ans;
+// }
 //
 //
-//vector<vector<int>> threeSum(vector<int> &nums) {
-//    vector<vector<int>> res;
+// vector<vector<int>> threeSum(vector<int> &nums) {
+//     vector<vector<int>> res;
 //
-//    sort(nums.begin(), nums.end());
+//     sort(nums.begin(), nums.end());
 //
-//    int n = nums.size();
-//    for (int i = 0; i < n; ++i) {
+//     int n = nums.size();
+//     for (int i = 0; i < n; ++i) {
 ////        if (nums[i] > 0) break;
 ////
 ////        if (nums[i] == nums[i - 1]) continue;
@@ -91,19 +115,23 @@ void ReadDataWithSpeed() {
 //    }
 //    return res;
 //}
-int characterReplacement(string s, int k) {
+int characterReplacement(string s, int k)
+{
     int n = s.length(), l = 0, r = 1;
     int sc = 0, oc = 0;
-    if (s[l] == s[r]) sc++;
-    else oc++;
+    if (s[l] == s[r])
+        sc++;
+    else
+        oc++;
     if (sc - oc >= k)
         return 0;
 }
 
-int main() {
+int main()
+{
     ReadDataWithSpeed();
-//    vector<int> v = {-1, 0, 1, 2, -1, -4};
-//    auto res = threeSum(v);
+    //    vector<int> v = {-1, 0, 1, 2, -1, -4};
+    //    auto res = threeSum(v);
 
     cout << characterReplacement("ABAB", 2);
 }
@@ -818,8 +846,8 @@ int main() {
 //             dfs(rooms, element, visited);
 //     }
 // };
-//class Solution {
-//public:
+// class Solution {
+// public:
 //    int sumOfEncryptedInt(vector<int> &nums) {
 //
 //        // if nums[i] is more than 10 convert it to make digits ex: 1235 -> 5555
@@ -877,7 +905,7 @@ int main() {
         return  dfs(root->left,target-root->val) + dfs(root->right,target-root->val);
  */
 //
-//int findKthLargest(vector<int> &nums, int k) {
+// int findKthLargest(vector<int> &nums, int k) {
 //    // partial_sort(nums.begin(), nums.begin() + k, nums.end(), greater<int>());
 //    // return nums[k - 1];
 //
@@ -969,246 +997,246 @@ int main() {
 //     }
 // };
 
-//class Solution
+// class Solution
 //{
 //
-//public:
-//    vector<vector<string>> suggestedProducts(vector<string> &products, string searchWord)
-//    {
-//        sort(products.begin(), products.end());
-//        vector<vector<string>> res;
-//        for (int i = 1; i <= searchWord.size(); i++)
-//        {
-//            string temp = searchWord.substr(0, i);
-//            vector<string> tempRes;
-//            for (auto element : products)
-//            {
-//                if (element.substr(0, i) == temp)
-//                {
-//                    tempRes.push_back(element);
-//                    if (tempRes.size() == 3)
-//                        break;
-//                }
-//            }
-//            res.push_back(tempRes);
-//        }
-//        return res;
-//    }
-//};
+// public:
+//     vector<vector<string>> suggestedProducts(vector<string> &products, string searchWord)
+//     {
+//         sort(products.begin(), products.end());
+//         vector<vector<string>> res;
+//         for (int i = 1; i <= searchWord.size(); i++)
+//         {
+//             string temp = searchWord.substr(0, i);
+//             vector<string> tempRes;
+//             for (auto element : products)
+//             {
+//                 if (element.substr(0, i) == temp)
+//                 {
+//                     tempRes.push_back(element);
+//                     if (tempRes.size() == 3)
+//                         break;
+//                 }
+//             }
+//             res.push_back(tempRes);
+//         }
+//         return res;
+//     }
+// };
 //
-//class Solution
+// class Solution
 //{
-//public:
-//    int eraseOverlapIntervals(vector<vector<int>> &intervals)
-//    {
-//        int res = 0;
-//        if (intervals.size() == 0)
-//            return 0;
+// public:
+//     int eraseOverlapIntervals(vector<vector<int>> &intervals)
+//     {
+//         int res = 0;
+//         if (intervals.size() == 0)
+//             return 0;
 //
-//        sort(
-//            intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b)
-//            { return a[1] < b[1]; });
+//         sort(
+//             intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b)
+//             { return a[1] < b[1]; });
 //
-//        vector<int> prev = intervals[0];
+//         vector<int> prev = intervals[0];
 //
-//        for (auto e : intervals)
-//        {
-//            if (prev[1] > e[0])
-//                res++;
+//         for (auto e : intervals)
+//         {
+//             if (prev[1] > e[0])
+//                 res++;
 //
-//            else
-//                prev = e;
-//        }
+//             else
+//                 prev = e;
+//         }
 //
-//        return res;
-//    }
-//};
+//         return res;
+//     }
+// };
 //
-//struct SinglyLinkedListNode
+// struct SinglyLinkedListNode
 //{
-//    int data;
-//    SinglyLinkedListNode *next;
-//};
+//     int data;
+//     SinglyLinkedListNode *next;
+// };
 //
-//SinglyLinkedListNode *mergeLists(SinglyLinkedListNode *head1, SinglyLinkedListNode *head2)
+// SinglyLinkedListNode *mergeLists(SinglyLinkedListNode *head1, SinglyLinkedListNode *head2)
 //{
-//    if (!head1)
-//        return head2;
-//    if (!head2)
-//        return head1;
+//     if (!head1)
+//         return head2;
+//     if (!head2)
+//         return head1;
 //
-//    if (head1->data < head2->data)
-//    {
-//        head1->next = mergeLists(head1->next, head2);
-//        return head1;
-//    }
-//    else
-//    {
-//        head2->next = mergeLists(head1, head2->next);
-//        return head2;
-//    }
-//}
+//     if (head1->data < head2->data)
+//     {
+//         head1->next = mergeLists(head1->next, head2);
+//         return head1;
+//     }
+//     else
+//     {
+//         head2->next = mergeLists(head1, head2->next);
+//         return head2;
+//     }
+// }
 //
-//string reverseWords(string s)
+// string reverseWords(string s)
 //{
-//    int n = s.size();
-//    int i = 0;
-//    for (int j = 0; j < n; j++)
-//    {
-//        if (s[j] == ' ')
-//        {
-//            reverse(s.begin() + i, s.begin() + j);
-//            i = j + 1;
-//        }
-//    }
-//    reverse(s.begin() + i, s.end());
-//    return s;
-//}
+//     int n = s.size();
+//     int i = 0;
+//     for (int j = 0; j < n; j++)
+//     {
+//         if (s[j] == ' ')
+//         {
+//             reverse(s.begin() + i, s.begin() + j);
+//             i = j + 1;
+//         }
+//     }
+//     reverse(s.begin() + i, s.end());
+//     return s;
+// }
 //
-//bool increasingTriplet(vector<int> &nums)
+// bool increasingTriplet(vector<int> &nums)
 //{
 //
-//    for (int i = 0, j = 1, k = 2; k < nums.size();)
-//    {
-//        if (nums[i] < nums[j] && nums[j] < nums[k])
-//            return true;
+//     for (int i = 0, j = 1, k = 2; k < nums.size();)
+//     {
+//         if (nums[i] < nums[j] && nums[j] < nums[k])
+//             return true;
 //
-//        else if (nums[i] < nums[j])
-//            k++;
+//         else if (nums[i] < nums[j])
+//             k++;
 //
-//        else
-//        {
-//            i++, j++, k++;
-//        }
-//    }
+//         else
+//         {
+//             i++, j++, k++;
+//         }
+//     }
 //
-//    return false;
-//}
-//class Solution
+//     return false;
+// }
+// class Solution
 //{
-//public:
-//    vector<string> letterCombinations(string digits)
-//    {
-//        vector<string> res;
-//        if (digits.size() == 0)
-//            return res;
-//        vector<string> mp = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-//        res.push_back("");
-//        for (auto digit : digits)
-//        {
-//            vector<string> temp;
-//            for (auto element : res)
-//            {
-//                for (auto ch : mp[digit - '0'])
-//                {
-//                    temp.push_back(element + ch);
-//                }
-//            }
-//            res = temp;
-//        }
-//        return res;
-//    }
-//};
+// public:
+//     vector<string> letterCombinations(string digits)
+//     {
+//         vector<string> res;
+//         if (digits.size() == 0)
+//             return res;
+//         vector<string> mp = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+//         res.push_back("");
+//         for (auto digit : digits)
+//         {
+//             vector<string> temp;
+//             for (auto element : res)
+//             {
+//                 for (auto ch : mp[digit - '0'])
+//                 {
+//                     temp.push_back(element + ch);
+//                 }
+//             }
+//             res = temp;
+//         }
+//         return res;
+//     }
+// };
 //
-//class Solution
+// class Solution
 //{
-//public:
-//    vector<double> averageOfLevels(TreeNode *root)
-//    {
-//        if (!root)
-//            return {};
+// public:
+//     vector<double> averageOfLevels(TreeNode *root)
+//     {
+//         if (!root)
+//             return {};
 //
-//        vector<double> res;
-//        queue<TreeNode *> q;
-//        q.push(root);
+//         vector<double> res;
+//         queue<TreeNode *> q;
+//         q.push(root);
 //
-//        while (!q.empty())
-//        {
-//            int n = q.size();
-//            double sum = 0;
-//            for (int i = 0; i < n; i++)
-//            {
-//                TreeNode *node = q.front();
-//                q.pop();
-//                sum += node->val;
-//                if (node->left)
-//                    q.push(node->left);
-//                if (node->right)
-//                    q.push(node->right);
-//            }
-//            res.push_back(sum / n);
-//        }
-//        return res;
-//    }
-//};
+//         while (!q.empty())
+//         {
+//             int n = q.size();
+//             double sum = 0;
+//             for (int i = 0; i < n; i++)
+//             {
+//                 TreeNode *node = q.front();
+//                 q.pop();
+//                 sum += node->val;
+//                 if (node->left)
+//                     q.push(node->left);
+//                 if (node->right)
+//                     q.push(node->right);
+//             }
+//             res.push_back(sum / n);
+//         }
+//         return res;
+//     }
+// };
 //
-//class Solution
+// class Solution
 //{
-//    unordered_set<int> st;
+//     unordered_set<int> st;
 //
-//public:
-//    bool findTarget(TreeNode *root, int k)
-//    {
-//        if (!root)
-//            return false;
-//        if (st.count(k - root->val))
-//            return true;
-//        st.insert(root->val);
-//        return findTarget(root->left, k) || findTarget(root->right, k);
-//    }
-//};
+// public:
+//     bool findTarget(TreeNode *root, int k)
+//     {
+//         if (!root)
+//             return false;
+//         if (st.count(k - root->val))
+//             return true;
+//         st.insert(root->val);
+//         return findTarget(root->left, k) || findTarget(root->right, k);
+//     }
+// };
 //
-//struct DoublyLinkedListNode
+// struct DoublyLinkedListNode
 //{
-//    int data;
-//    DoublyLinkedListNode *next;
-//    DoublyLinkedListNode *prev;
-//};
+//     int data;
+//     DoublyLinkedListNode *next;
+//     DoublyLinkedListNode *prev;
+// };
 //
-//DoublyLinkedListNode *sortedInsert(DoublyLinkedListNode *list, int data)
+// DoublyLinkedListNode *sortedInsert(DoublyLinkedListNode *list, int data)
 //{
-//    DoublyLinkedListNode *newElement = new DoublyLinkedListNode();
+//     DoublyLinkedListNode *newElement = new DoublyLinkedListNode();
 //
-//    newElement->data = data;
-//    newElement->next = NULL;
-//    newElement->prev = NULL;
+//     newElement->data = data;
+//     newElement->next = NULL;
+//     newElement->prev = NULL;
 //
-//    if (!list)
-//        return newElement;
+//     if (!list)
+//         return newElement;
 //
-//    if (data < list->data)
-//    {
-//        newElement->next = list;
-//        list->prev = newElement;
-//        return newElement;
-//    }
+//     if (data < list->data)
+//     {
+//         newElement->next = list;
+//         list->prev = newElement;
+//         return newElement;
+//     }
 //
-//    DoublyLinkedListNode *temp = list;
-//    while (temp->next && temp->next->data < data)
-//        temp = temp->next;
+//     DoublyLinkedListNode *temp = list;
+//     while (temp->next && temp->next->data < data)
+//         temp = temp->next;
 //
-//    newElement->next = temp->next;
-//    if (temp->next)
-//        temp->next->prev = newElement;
-//    temp->next = newElement;
-//    newElement->prev = temp;
+//     newElement->next = temp->next;
+//     if (temp->next)
+//         temp->next->prev = newElement;
+//     temp->next = newElement;
+//     newElement->prev = temp;
 //
-//    return list;
-//}
+//     return list;
+// }
 //
-//int main()
+// int main()
 //{
-//    // Solution sol = Solution();
-//    vector<int> nums = {3, 2, 3, 1, 2, 4, 5, 5, 5, 5, 5, 6};
-//    // sol.sumOfEncryptedInt(nums);
-//    int x = findKthLargest(nums, 4);
-//    cout << x << endl;
+//     // Solution sol = Solution();
+//     vector<int> nums = {3, 2, 3, 1, 2, 4, 5, 5, 5, 5, 5, 6};
+//     // sol.sumOfEncryptedInt(nums);
+//     int x = findKthLargest(nums, 4);
+//     cout << x << endl;
 //
-//    string s = "abc";
+//     string s = "abc";
 //
-//    set<int> st;
-//    st.insert(1);
-//    int lastOne = *st.end();
-//    st.erase(st.end());
-//    return 0;
-//}
+//     set<int> st;
+//     st.insert(1);
+//     int lastOne = *st.end();
+//     st.erase(st.end());
+//     return 0;
+// }
