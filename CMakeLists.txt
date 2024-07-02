@@ -258,4 +258,6 @@ add_executable(problem_solving
         acpc_preperation/sheet2/l.cpp
         acpc_preperation/sheet2/s.cpp
         interviews_perperation/ibm.cpp
+        leetcode/general.cpp
+        interviews_perperation/amazon_round_2.cpp
 )

@@ -5,6 +5,63 @@ import (
 	"math"
 )
 
+type pair struct {
+	val, counter int
+}
+
+func equalFrequency(word string) bool {
+	freq := make(map[rune]int)
+
+	for _, w := range word {
+		freq[w]++
+	}
+
+	setFreq := make(map[int]pair)
+
+	for _, f := range freq {
+		if _, ok := setFreq[f]; !ok {
+
+			setFreq[f] = pair{f, 1}
+
+		} else {
+			setFreq[f] = pair{f, setFreq[f].counter + 1}
+
+		}
+
+	}
+	if len(setFreq) == 1 {
+		for _, v := range setFreq {
+			if v.val == 1 || v.counter == 1 {
+				return true
+			}
+		}
+
+		return false
+
+	}
+
+	if len(setFreq) > 2 {
+		return false
+	}
+	var val1, val2 int
+
+	for _, v := range setFreq {
+		if val1 == 0 {
+			val1 = v.val
+		} else {
+			val2 = v.val
+		}
+	}
+
+	diff := int(math.Abs(float64(val1 - val2)))
+
+	if diff == 1 {
+		return true
+	}
+
+	return false
+}
+
 func miniMaxSum(arr []int32) {
 	mx, mn, sum := int64(0), int64(math.MaxInt32), int64(0)
 
@@ -96,5 +153,6 @@ func simpleArraySum(ar []int32) int32 {
 }
 
 func main() {
-	staircase(4)
+	fmt.Println(equalFrequency("ddaccb"))
+	fmt.Println(equalFrequency("dca"))
 }
