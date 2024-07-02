@@ -510,14 +510,14 @@ public:
         int res = 0;
         vector<int> bits = digitalToBits(num);
 
-        for (auto e : bits) {
+        for (auto e: bits) {
             if (e == 1)
                 res += 2;
             else
                 res++;
         }
 
-        return res-1;
+        return res - 1;
     }
 
     vector<int> digitalToBits(int n) {
@@ -528,7 +528,7 @@ public:
             res.push_back(r);
             n /= 2;
         }
-
+        if (res == 0) return 0;
         return res;
     }
 };
