@@ -43,13 +43,13 @@ class SolutionFindDuplicate {
 public:
     int findDuplicate(vector<int> &nums) {
 
-        int n = nums.size(), v = 0;
+        for (auto e: nums) {
+            if (nums[abs(e)] < 0) return abs(e);
 
-        for (int i = 0; i < n; i++) {
-            v = v ^ nums[i] ^ i;
-
+            nums[abs(e)] *= -1;
         }
-        return v;
+
+        return -1;
     }
 };
 
@@ -1182,32 +1182,21 @@ public:
 class SolutionSetZeroes {
 public:
     void setZeroes(vector<vector<int>> &matrix) {
-
         int rows = matrix.size(), cols = matrix[0].size();
         bool firstRow = false;
 
-        for (int i = 0; i < rows; ++i) {
-            if (matrix[i][0] == 0) firstRow = true;
-            for (int j = 0; j < cols; ++j) {
-                if (matrix[i][j] == 0) {
-                    matrix[0][j] = 0;
-                    if (i > 0) matrix[i][0] = 0;
-                    else firstRow = true;
-                }
-            }
+        for (int r = 0; r < rows; ++r) {
+            if (matrix[r][0] == 0) firstRow = true;
+            for (int c = 1; c < cols; ++c)
+                if (matrix[r][c] == 0)
+                    matrix[r][0] = matrix[0][c] = 0;
         }
 
-        for (int i = 1; i < rows; ++i) {
-            for (int j = 1; j < cols; ++j) {
-                if (matrix[0][j] == 0 || matrix[i][0] == 0) matrix[i][j] = 0;
-            }
+        for (int r = rows - 1; r >= 0; --r) {
+            if (firstRow) matrix[r][0] = 0;
+            for (int c = cols - 1; c >= 0; --c)
+                if (matrix[0][c] == 0 || matrix[r][0] == 0) matrix[r][c] = 0;
         }
-
-        if (matrix[0][0] == 0)
-            for (int i = 0; i < rows; ++i) matrix[i][0] = 0;
-
-        if (firstRow)
-            for (int j = 0; j < cols; ++j) matrix[0][j] = 0;
 
     }
 
@@ -1328,26 +1317,354 @@ long numberOfWays(string book) {
     // tow pointers problem
     // take first 2 elements then go forward with the third index
 
-    long res = 0, bookSize = book.size(), a = 0, b = 1, c = 3;
+    long res = 0, n = book.size(), a = 0, b = a + 1, c = b + 1;
 
-    while (a < bookSize) {
+    while (a < n - 3) {
         if (book[a] != book[b] && book[b] != book[c]) {
             res++;
         }
 
-        // move the pointers
+        if (c == n - 1 && b < n - 2) {
+            b++;
+            c = b + 1;
+            continue;
+        }
+
+        if (b == n - 2 && a < n - 3) {
+            a++;
+            b = a + 1;
+            c = b + 1;
+            continue;
+        }
 
 
-
+        c++;
 
     }
 
     return res;
 
-
 }
 
 
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int> &nums) {
+        vector<int> res;
+
+        int idx;
+        for (auto e: nums) {
+            idx = abs(e) - 1;
+            nums[idx] *= -1;
+            if (nums[idx] > 0) res.push_back(abs(e));
+        }
+
+        return res;
+
+    }
+
+    void setZeroes(vector<vector<int>> &matrix) {
+        int rows = matrix.size(), cols = matrix[0].size();
+        bool firstRow = false;
+
+        for (int r = 0; r < rows; ++r) {
+            if (matrix[r][0] == 0) firstRow = true;
+            for (int c = 1; c < cols; ++c)
+                if (matrix[r][c] == 0)
+                    matrix[r][0] = matrix[0][c] = 0;
+        }
+
+        for (int r = rows - 1; r >= 0; --r) {
+            if (firstRow) matrix[r][0] = 0;
+            for (int c = cols - 1; c >= 0; --c)
+                if (matrix[0][c] == 0 || matrix[r][0] == 0) matrix[r][c] = 0;
+        }
+    }
+
+    vector<int> spiralOrder(vector<vector<int>> &matrix) {
+        vector<int> res;
+        int n = matrix.size(), m = matrix[0].size();
+        int top = 0, bottom = n - 1, left = 0, right = m - 1;
+
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++) {
+                res.push_back(matrix[top][i]);
+            }
+            top++;
+
+            for (int i = top; i <= bottom; i++) {
+                res.push_back(matrix[i][right]);
+            }
+            right--;
+
+            if (top <= bottom) {
+
+                for (int i = right; i >= left; i--) {
+                    res.push_back(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    res.push_back(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+
+        return res;
+    }
+
+    int nExist, mExist;
+
+    bool exist(vector<vector<char>> &board, string word) {
+        nExist = board.size();
+        mExist = board[0].size();
+        vector<vector<bool>> visited(nExist, vector<bool>(mExist, false));
+
+        for (int i = 0; i < nExist; i++) {
+            for (int j = 0; j < mExist; j++) {
+                if (existDFS(board, word, i, j, 0, visited)) return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool existDFS(vector<vector<char>> &board, string &word, int i, int j, int idx, vector<vector<bool>> &visited) {
+        if (idx == word.size()) return true;
+
+        if (i < 0 || i >= nExist || j < 0 || j >= mExist || visited[i][j] || board[i][j] != word[idx]) return false;
+
+        visited[i][j] = true;
+        if (existDFS(board, word, i + 1, j, idx + 1, visited) ||
+            existDFS(board, word, i - 1, j, idx + 1, visited) ||
+            existDFS(board, word, i, j + 1, idx + 1, visited) ||
+            existDFS(board, word, i, j - 1, idx + 1, visited))
+            return true;
+
+        visited[i][j] = false;
+        return false;
+    }
+
+
+    int longestConsecutive(vector<int> &nums) {
+        unordered_set<int> st(nums.begin(), nums.end());
+        int res = 0;
+        for (auto e: st) {
+            if (!st.count(e - 1)) {
+                int cur = e, len = 1;
+                while (st.count(cur + 1)) {
+                    cur++;
+                    len++;
+                }
+                res = max(res, len);
+            }
+        }
+
+        return res;
+
+    }
+
+
+    vector<vector<int>> subsets(vector<int> &nums) {
+        vector<vector<int>> res;
+        vector<int> temp;
+        subsets(0, res, temp, nums);
+        return res;
+    }
+
+    void subsets(int idx, vector<vector<int>> &res, vector<int> &temp, vector<int> &nums) {
+        res.push_back(temp);
+
+        for (int i = idx; i < nums.size(); ++i) {
+            temp.push_back(nums[i]);
+            subsets(i + 1, res, temp, nums);
+            temp.pop_back();
+        }
+    }
+
+
+    vector<vector<int>> subsetsWithDup(vector<int> &nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        vector<int> temp;
+        subsetsWithDup(0, res, temp, nums);
+        return res;
+    }
+
+    void subsetsWithDup(int idx, vector<vector<int>> &res, vector<int> &temp,
+                        vector<int> &nums) {
+        res.push_back(temp);
+
+        for (int i = idx; i < nums.size(); ++i) {
+            if (i > idx && nums[i] == nums[i - 1])
+                continue;
+            temp.push_back(nums[i]);
+            subsetsWithDup(i + 1, res, temp, nums);
+            temp.pop_back();
+        }
+    }
+
+    vector<vector<int>> permute(vector<int> &nums) {
+        sort(nums.begin(), nums.end());
+
+        vector<vector<int>> res;
+
+        do {
+            res.push_back(nums);
+        } while (next_permutation(nums.begin(), nums.end()));
+
+        return res;
+    }
+
+    vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
+        vector<vector<int>> res;
+        vector<int> temp;
+        sort(candidates.begin(), candidates.end());
+
+        cs1Backtrack(target, 0, res, temp, candidates);
+
+        return res;
+    }
+
+    void cs1Backtrack(int target, int start, vector<vector<int>> &res, vector<int> &temp, vector<int> &candidates) {
+        if (target < 0) return;
+
+        if (target == 0) {
+            res.push_back(temp);
+            return;
+        }
+
+        for (int i = start; i < candidates.size(); ++i) {
+            temp.push_back(candidates[i]);
+            cs1Backtrack(target - candidates[i], i, res, temp, candidates);
+            temp.pop_back();
+        }
+    }
+
+
+    vector<vector<int>> combinationSum2(vector<int> &candidates, int target) {
+        vector<vector<int>> res;
+        vector<int> temp;
+        sort(candidates.begin(), candidates.end());
+
+        cs2Backtrack(target, 0, res, temp, candidates);
+
+        return res;
+    }
+
+    void cs2Backtrack(int target, int start, vector<vector<int>> &res, vector<int> &temp, vector<int> &candidates) {
+        if (target < 0) return;
+
+        if (target == 0) {
+            res.push_back(temp);
+            return;
+        }
+
+        for (int i = start; i < candidates.size(); ++i) {
+            if (i > start && candidates[i] == candidates[i - 1]) continue;
+            temp.push_back(candidates[i]);
+            cs2Backtrack(target - candidates[i], i + 1, res, temp, candidates);
+            temp.pop_back();
+        }
+    }
+
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+
+        generateParenthesisDfs(0, 0, "", n, res);
+
+        return res;
+    }
+
+    void generateParenthesisDfs(int o, int c, string s, int n, vector<string> &res) {
+        if (o == c && o + c == n * 2) {
+            res.push_back(s);
+            return;
+        }
+
+        if (o < n) generateParenthesisDfs(o + 1, c, s + "(", n, res);
+        if (c < o) generateParenthesisDfs(o, c + 1, s + ")", n, res);
+
+    }
+
+    int findTargetSumWays(vector<int> &nums, int target) {
+
+
+        return findTargetSumWaysDfs(nums, target, nums.size() - 1, 0);
+
+    }
+
+
+    int findTargetSumWaysDfs(vector<int> &nums, int target, int start, int sum) {
+        if (start < 0 && sum == target) return 1;
+        if (start < 0) return 0;
+
+        int po = findTargetSumWaysDfs(nums, target, start - 1, sum + nums[start]);
+        int ne = findTargetSumWaysDfs(nums, target, start - 1, sum - nums[start]);
+
+
+        return po + ne;
+
+    }
+
+    int rob(vector<int> &nums) {
+        int n = nums.size();
+        if (n == 1) return nums[0];
+        return max(robRange(nums, 0, n - 2), robRange(nums, 1, n - 1));
+    }
+
+    int robRange(vector<int> &nums, int start, int end) {
+        int dp_i_1 = 0, dp_i_2 = 0;
+        int dp_i = 0;
+        for (int i = end; i >= start; i--) {
+            dp_i = max(dp_i_1, nums[i] + dp_i_2);
+            dp_i_2 = dp_i_1;
+            dp_i_1 = dp_i;
+        }
+        return dp_i;
+    }
+
+    int maxSubArray(vector<int> &nums) {
+        if (nums.size() == 1)
+            return nums[0];
+        int prev = 0, mx = INT_MIN;
+
+        for (auto e: nums) {
+            prev = max(prev + e, e);
+            mx = max(mx, prev);
+        }
+
+        return mx;
+    }
+
+    int maxProduct(vector<int> &nums) {
+        int n = nums.size();
+        int res = nums[0], mx = nums[0], mn = nums[0];
+
+        for (int i = 1; i < n; i++) {
+            if (nums[i] < 0) swap(mx, mn);
+            mx = max(nums[i], mx * nums[i]);
+            mn = min(nums[i], mn * nums[i]);
+            res = max(res, mx);
+        }
+
+        return res;
+    }
+
+    void sortColors(vector<int> &nums) {
+        int n = nums.size(), low = 0, high = n - 1, mid = 0;
+
+        while( mid <= high ){
+            if (nums[mid] == 0) swap(nums[low++], nums[mid++]);
+            else if (nums[mid] == 1) mid++;
+            else swap(nums[mid], nums[high--]);
+        }
+
+    }
+};
 
 int main() {
     ReadDataWithSpeed();
