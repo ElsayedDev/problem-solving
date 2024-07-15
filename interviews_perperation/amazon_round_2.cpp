@@ -1664,6 +1664,10 @@ public:
         }
 
     }
+
+    int lengthOfLIS(vector<int>& nums) {
+    
+    }
 };
 
 int main() {
