@@ -260,4 +260,5 @@ add_executable(problem_solving
         interviews_perperation/ibm.cpp
         leetcode/general.cpp
         interviews_perperation/amazon_round_2.cpp
+        interviews_perperation/noon_round_2.cpp
 )
