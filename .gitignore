@@ -1,1 +1,29 @@
 /local.test.cpp
+
+# Ignore local test files
+local.test.cpp
+
+# Ignore build artifacts
+/build/
+*.o
+*.exe
+*.out
+*.log
+*.tmp
+*.obj
+*.class
+*.dll
+*.so
+*.dylib
+*.pyc
+*.pyo
+*.ipynb_checkpoints
+*.swp
+*.swo
+*.DS_Store
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr

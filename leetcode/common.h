@@ -1,7 +1,19 @@
+#include <cstddef>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <climits>
+#include <queue>
+#include <stack>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
+
 #ifndef SIMPLE_H
 #define SIMPLE_H
 
-#include <bits/stdc++.h>
 #define ll long long int
 
 struct TreeNode
@@ -31,19 +43,19 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-
-class Node {
+class Node
+{
 public:
     int val;
-    Node* left;
-    Node* right;
-    Node* next;
+    Node *left;
+    Node *right;
+    Node *next;
 
     Node() : val(0), left(NULL), right(NULL), next(NULL) {}
 
     Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
 
-    Node(int _val, Node* _left, Node* _right, Node* _next)
-            : val(_val), left(_left), right(_right), next(_next) {}
+    Node(int _val, Node *_left, Node *_right, Node *_next)
+        : val(_val), left(_left), right(_right), next(_next) {}
 };
 #endif
