@@ -1,0 +1,11 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/elsayeddev/Documents/GitHub/problem-solving/output/interview_bit/week'
+relocations:
+  - { offset: 0x2E61, size: 0x8, addend: 0x0, symName: __ZStL8__ioinit, symObjAddr: 0x26531, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offset: 0x31BD, size: 0x8, addend: 0x0, symName: __GLOBAL__sub_I_week.cpp, symObjAddr: 0x268, symBinAddr: 0x100000900, symSize: 0x14 }
+  - { offset: 0x31D4, size: 0x8, addend: 0x0, symName: __Z41__static_initialization_and_destruction_0v, symObjAddr: 0x22C, symBinAddr: 0x1000008C4, symSize: 0x3C }
+  - { offset: 0x31F3, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x114, symBinAddr: 0x1000007B4, symSize: 0x110 }
+  - { offset: 0x3247, size: 0x8, addend: 0x0, symName: __Z20removeKthNodeFromEndP20SinglyLinkedListNodei, symObjAddr: 0x2C, symBinAddr: 0x1000006CC, symSize: 0xE8 }
+  - { offset: 0x32FA, size: 0x8, addend: 0x0, symName: __ZN20SinglyLinkedListNodeC1Ei, symObjAddr: 0x0, symBinAddr: 0x1000006A0, symSize: 0x2C }
+...
